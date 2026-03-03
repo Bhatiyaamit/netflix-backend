@@ -8,7 +8,7 @@ const {
   verifyToken,
   googleLogin,
 } = require("../Controller/Auth");
-const { auth, isStudent, isAdmin } = require("../middleware/auth");
+// const { auth, isStudent, isAdmin } = require("../middleware/auth");
 
 // POST Routes
 router.post("/signup", signup);
