@@ -94,6 +94,8 @@ exports.login = async (req, res) => {
       const options = {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true, // MUST be true on Render (HTTPS)
+        sameSite: "None", // REQUIRED for cross-domain
       };
 
       return res.cookie("token", token, options).status(200).json({
@@ -159,7 +161,7 @@ exports.verifyToken = async (req, res) => {
   try {
     const token =
       req.cookies?.token || req.headers?.authorization?.split(" ")[1];
-
+    
     if (!token) {
       return res.status(401).json({
         success: false,
